@@ -52,7 +52,7 @@ sections:
 
 homePage:
   title: "Adam Lea"
-  subtitle: "Apps, articles, and code snippets"  # TODO: your tagline, in your words
+  subtitle: "Building with Swift, PHP, and Python using AI. Always learning. Trying to share in the open."
   recentPostsCount: 6
 
 footer:
