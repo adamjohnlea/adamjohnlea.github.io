@@ -1,0 +1,5 @@
+.build/
+_Site/
+Package.resolved
+.DS_Store
+.sitekit-cache/

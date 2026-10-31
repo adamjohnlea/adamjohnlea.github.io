@@ -1,0 +1,12 @@
+name: "Terminal"
+# Fonts: stop the preset web fonts; load IBM Plex Mono and drive everything from it.
+fontPairing: "system"
+externalCSS:
+   - "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+css:
+   - "css/theme.css"
+   - "css/terminal.css"
+js:
+   - "js/theme.js"
+# No-flash: force dark glass + restore the saved phosphor before first paint.
+headInlineScript: "(function(){var p=localStorage.getItem('phosphor')||'green';var d=document.documentElement;d.setAttribute('data-theme','dark');d.setAttribute('data-phosphor',p)})()"

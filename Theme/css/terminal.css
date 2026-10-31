@@ -1,0 +1,256 @@
+/* ============================================================
+   Terminal — a polished phosphor-CRT theme for SiteKit.
+   Three display modes (green / gray / amber) selected by the
+   data-phosphor attribute on <html>. All component colors flow
+   from the --term-* variables below into SiteKit's --color-*.
+   ============================================================ */
+
+/* ---- Phosphor palettes (softened, not neon) ---- */
+html[data-phosphor="green"] {
+   --term-bg:        #0a0f0c;
+   --term-bg-soft:   #0e1511;
+   --term-fg:        #8fe0a8;
+   --term-fg-bright: #d8ffe6;
+   --term-dim:       #4e7d61;
+   --term-accent:    #37f08a;
+   --term-accent-br: #7effb6;
+   --term-rule:      #173024;
+   --term-glow:      rgba(55, 240, 138, 0.28);
+}
+html[data-phosphor="gray"] {
+   --term-bg:        #0c0e0f;
+   --term-bg-soft:   #12161800;
+   --term-bg-soft:   #141719;
+   --term-fg:        #c4cacd;
+   --term-fg-bright: #f1f4f5;
+   --term-dim:       #6f777b;
+   --term-accent:    #d9e0e3;
+   --term-accent-br: #ffffff;
+   --term-rule:      #242a2d;
+   --term-glow:      rgba(217, 224, 227, 0.16);
+}
+html[data-phosphor="amber"] {
+   --term-bg:        #0f0b06;
+   --term-bg-soft:   #15100a;
+   --term-fg:        #e4a84c;
+   --term-fg-bright: #ffd486;
+   --term-dim:       #8a6a34;
+   --term-accent:    #ffb020;
+   --term-accent-br: #ffcf6b;
+   --term-rule:      #322410;
+   --term-glow:      rgba(255, 176, 32, 0.24);
+}
+
+/* ---- Map phosphor vars onto SiteKit's component tokens ----
+   Specificity html[data-phosphor] (0,1,1) beats the inline
+   :root / [data-theme="dark"] blocks, and this sheet loads last. */
+html[data-phosphor] {
+   --color-bg:             var(--term-bg);
+   --color-bg-alt:         var(--term-bg-soft);
+   --color-bg-card:        var(--term-bg-soft);
+   --color-text:           var(--term-fg);
+   --color-text-secondary: var(--term-fg);
+   --color-text-muted:     var(--term-dim);
+   --color-accent:         var(--term-accent);
+   --color-accent-hover:   var(--term-accent-br);
+   --color-accent-light:   var(--term-bg-soft);
+   --color-accent-contrast:var(--term-bg);
+   --color-border:         var(--term-rule);
+   --color-border-light:   var(--term-rule);
+   --color-code-bg:        var(--term-bg-soft);
+   --color-code-text:      var(--term-fg-bright);
+   --color-shadow:         transparent;
+   --color-shadow-lg:      transparent;
+
+   --font-heading: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+   --font-sans:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+   --font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+   --radius: 0px;      /* terminals have hard corners */
+   --radius-lg: 0px;
+}
+
+body {
+   line-height: 1.65;
+   letter-spacing: 0.01em;
+}
+
+::selection { background: var(--term-accent); color: var(--term-bg); }
+:focus-visible { outline: 2px solid var(--term-accent); outline-offset: 2px; }
+
+/* ---- The CRT glass: faint scanlines + vignette, pointer-safe ---- */
+body::after {
+   content: "";
+   position: fixed; inset: 0;
+   pointer-events: none; z-index: 9999;
+   background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.022) 0 1px,
+      transparent 1px 3px
+   );
+   opacity: 0.6;
+}
+body::before {
+   content: "";
+   position: fixed; inset: 0;
+   pointer-events: none; z-index: 9998;
+   background: radial-gradient(130% 120% at 50% -10%, transparent 58%, rgba(0,0,0,0.33) 100%);
+}
+
+/* ---- Header / nav as a path bar ---- */
+.sk-site-header {
+   background: var(--term-bg);
+   border-bottom: 1px solid var(--term-rule);
+   box-shadow: none;
+}
+.sk-nav-item a {
+   text-transform: lowercase;
+   color: var(--term-fg);
+   letter-spacing: 0.02em;
+}
+.sk-nav-item a::before { content: "~/"; color: var(--term-dim); }
+/* the home link renders as /root — the root user's actual home directory */
+.sk-nav-item a[href="/"]::before { content: "/"; }
+.sk-nav-item a:hover { color: var(--term-accent-br); text-shadow: 0 0 8px var(--term-glow); }
+
+.sk-search-btn, .sk-theme-toggle {
+   color: var(--term-accent);
+   border: 1px solid var(--term-rule);
+   background: var(--term-bg-soft);
+   border-radius: 0;
+}
+.sk-search-btn:hover, .sk-theme-toggle:hover {
+   border-color: var(--term-accent);
+   color: var(--term-accent-br);
+}
+/* phosphor switch label (set by JS) */
+.sk-theme-toggle {
+   width: auto;
+   min-width: 0;
+   padding: 0.28rem 0.55rem;
+   font: 500 0.72rem/1 "IBM Plex Mono", monospace;
+   letter-spacing: 0.04em;
+   white-space: nowrap;
+}
+
+/* ---- Hero as a terminal window ---- */
+.sk-home-hero {
+   position: relative;
+   text-align: left;
+   border: 1px solid var(--term-rule);
+   background: var(--term-bg-soft);
+   padding: 3.1rem 1.6rem 1.9rem;
+   margin-top: 1.5rem;
+}
+.sk-home-hero::before {
+   content: "~/adam-lea \2014 zsh";
+   position: absolute; top: 0; left: 0; right: 0;
+   padding: 0.45rem 0.9rem;
+   border-bottom: 1px solid var(--term-rule);
+   color: var(--term-dim);
+   font-size: 0.74rem;
+   letter-spacing: 0.03em;
+}
+.sk-home-title {
+   text-align: left;
+   font-size: clamp(2rem, 6.2vw, 3.2rem);
+   font-weight: 600;
+   line-height: 1.08;
+   color: var(--term-fg-bright);
+   text-shadow: 0 0 16px var(--term-glow);
+}
+.sk-home-title::before {
+   content: "adam@lea ~ % whoami";
+   display: block;
+   margin-bottom: 0.9rem;
+   font-size: 0.95rem;
+   font-weight: 400;
+   color: var(--term-accent);
+   text-shadow: none;
+}
+.sk-home-subtitle {
+   text-align: left;
+   margin-top: 1rem;
+   color: var(--term-fg);
+   font-size: 1rem;
+}
+.sk-home-subtitle::before { content: "\203A "; color: var(--term-dim); }
+
+/* JS appends this prompt line with a blinking cursor */
+.sk-term-prompt {
+   margin-top: 1.5rem;
+   color: var(--term-accent);
+   font-size: 0.95rem;
+}
+.sk-cursor {
+   display: inline-block;
+   color: var(--term-accent-br);
+   animation: sk-blink 1.1s steps(1) infinite;
+}
+@keyframes sk-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+   .sk-cursor { animation: none; }
+}
+
+/* ---- Listings as ruled log rows, not cards ---- */
+.sk-home-section-title, .sk-page-title, .sk-listing-title {
+   color: var(--term-fg-bright);
+   font-weight: 600;
+}
+.sk-post-list { list-style: none; margin: 0; padding: 0; }
+.sk-post-card {
+   background: none;
+   border: 0;
+   border-top: 1px solid var(--term-rule);
+   border-radius: 0;
+   box-shadow: none;
+   padding: 1.2rem 0;
+}
+.sk-post-card:last-of-type { border-bottom: 1px solid var(--term-rule); }
+.sk-post-title { color: var(--term-fg-bright); font-weight: 600; }
+.sk-post-title::before { content: "\203A "; color: var(--term-accent); }
+.sk-post-date { color: var(--term-dim); font-size: 0.8rem; letter-spacing: 0.02em; }
+.sk-post-summary { color: var(--term-fg); }
+.sk-tag-link { color: var(--term-accent); }
+.sk-tag-link::before { content: "#"; color: var(--term-dim); }
+
+.sk-home-all-posts a { color: var(--term-accent); }
+.sk-home-all-posts a:hover { text-shadow: 0 0 8px var(--term-glow); }
+
+/* ---- Article body + footer ---- */
+.sk-article-body a { color: var(--term-accent); }
+.sk-site-footer {
+   background: var(--term-bg);
+   border-top: 1px solid var(--term-rule);
+   color: var(--term-dim);
+}
+.sk-copyright { color: var(--term-dim); }
+.sk-attribution-link { color: var(--term-accent); }
+
+/* ---- Polish pass ---- */
+/* Kill the centered 600px block that indented the subtitle */
+.sk-home-subtitle { max-width: none; margin: 0.9rem 0 0; }
+
+/* Flatten tag pills to plain text; drop the base hover arrow */
+.sk-tag-link {
+   background: none;
+   border: 0;
+   border-radius: 0;
+   padding: 0;
+   color: var(--term-accent);
+}
+.sk-tag-link:hover { background: none; border: 0; color: var(--term-accent-br); }
+.sk-tag-link:hover::after { content: none; }
+
+/* Replace "View all posts →" with an on-theme command, no trailing arrow */
+.sk-home-all-posts { text-align: left; margin-top: 1.25rem; }
+.sk-home-all-posts a { font-size: 0; }
+.sk-home-all-posts a::after {
+   content: "cd ~/blog";
+   font-size: 0.95rem;
+   color: var(--term-accent);
+}
+.sk-home-all-posts a:hover::after {
+   color: var(--term-accent-br);
+   text-shadow: 0 0 8px var(--term-glow);
+}

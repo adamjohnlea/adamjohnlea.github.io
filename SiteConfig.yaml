@@ -1,0 +1,60 @@
+name: "Adam Lea"
+baseURL: "https://adamjohnlea.github.io"
+outputDirectory: "_Site"
+contentDirectory: "Content"
+defaultLanguage: "en"
+blogURLPrefix: "blog"
+
+author:
+  name: "Adam Lea"
+  email: "you@example.com"  # TODO: publish a real address here or remove the line
+
+navigation:
+  items:
+    - title: "root"
+      url: "/"
+    - title: "Apps"
+      url: "/apps/"
+    - title: "Blog"
+      url: "/blog/"
+    - title: "Snippets"
+      url: "/snippets/"
+    - title: "About"
+      url: "/about/"
+
+sections:
+  - name: "Blog"
+    slug: "blog"
+    contentDirectory: "Blog"
+    urlPrefix: "blog"
+    rssTitle: "My Dev Blog"
+    rssDescription: "Articles on development, apps, and more"
+    # Optional – see blog blueprint for category options
+    categories:
+      - name: "Developer"
+        slug: "developer"
+      - name: "Personal"
+        slug: "personal"
+
+  - name: "Snippets"
+    slug: "snippets"
+    contentDirectory: "Snippets"
+    urlPrefix: "snippets"
+    style: "short"
+    rssTitle: "Code Snippets"
+    rssDescription: "Quick code tips and examples"
+    # Optional – see snippets blueprint for topic options
+    topics:
+      - title: "SwiftUI"
+        tags: [swiftui, animation, navigation]
+      - title: "Swift"
+        tags: [swift, concurrency, generics]
+
+homePage:
+  title: "Adam Lea"
+  subtitle: "Apps, articles, and code snippets"  # TODO: your tagline, in your words
+  recentPostsCount: 6
+
+footer:
+  copyrightName: "Adam Lea"
+  startYear: 2026
