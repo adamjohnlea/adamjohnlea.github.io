@@ -326,3 +326,38 @@ body::before {
 .build-list .b-key::after { content: ": "; color: var(--term-dim); }
 .build-list a { color: var(--term-accent); }
 .build-list a:hover { color: var(--term-accent-br); text-shadow: 0 0 8px var(--term-glow); }
+
+/* ---- Apps page: a terminal `ls ~/apps` listing ---- */
+.sk-term-page .term-intro { color: var(--term-fg); margin: 0 0 1.3rem; max-width: 66ch; }
+.sk-term-page .term-line { color: var(--term-accent); margin: 0 0 0.6rem; }
+.sk-term-page .term-prompt-sym { color: var(--term-dim); }
+.app-list {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   border-top: 1px solid var(--term-rule);
+}
+.app-list li { border-bottom: 1px solid var(--term-rule); }
+.app-link { display: block; padding: 1rem 0; color: var(--term-fg); }
+.app-head {
+   display: flex;
+   align-items: baseline;
+   justify-content: space-between;
+   gap: 1rem;
+}
+.app-name { color: var(--term-fg-bright); font-weight: 600; }
+.app-name::before { content: "› "; color: var(--term-accent); }
+.app-plat { color: var(--term-dim); font-size: 0.78rem; white-space: nowrap; }
+.app-plat::before { content: "["; }
+.app-plat::after { content: "]"; }
+.app-desc {
+   display: block;
+   color: var(--term-fg);
+   font-size: 0.92rem;
+   margin-top: 0.3rem;
+   max-width: 68ch;
+}
+.app-link:hover .app-name { color: var(--term-accent-br); text-shadow: 0 0 8px var(--term-glow); }
+.app-link:hover .app-desc { color: var(--term-fg-bright); }
+.term-note { color: var(--term-dim); margin-top: 1.5rem; }
+.term-note a { color: var(--term-accent); }
