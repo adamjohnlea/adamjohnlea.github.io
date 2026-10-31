@@ -58,3 +58,10 @@ homePage:
 footer:
   copyrightName: "Adam Lea"
   startYear: 2026
+  social:
+    - platform: "GitHub"
+      url: "https://github.com/adamjohnlea"
+    - platform: "x"
+      url: "#"  # TODO: replace with your X profile URL
+    - platform: "YouTube"
+      url: "#"  # TODO: replace with your YouTube channel URL
