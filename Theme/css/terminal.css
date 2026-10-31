@@ -254,3 +254,75 @@ body::before {
    color: var(--term-accent-br);
    text-shadow: 0 0 8px var(--term-glow);
 }
+
+/* ---- Home: GitHub profile as a second terminal window ---- */
+.sk-home-content { margin-top: 1.4rem; }
+.sk-home-profile {
+   position: relative;
+   border: 1px solid var(--term-rule);
+   background: var(--term-bg-soft);
+   padding: 2.7rem 1.6rem 1.5rem;
+}
+.sk-home-profile .term-titlebar {
+   position: absolute; top: 0; left: 0; right: 0;
+   padding: 0.45rem 0.9rem;
+   border-bottom: 1px solid var(--term-rule);
+   color: var(--term-dim);
+   font-size: 0.74rem; letter-spacing: 0.03em;
+}
+.sk-home-profile .term-line {
+   color: var(--term-accent);
+   margin: 1.15rem 0 0.55rem;
+   font-size: 0.95rem;
+}
+.sk-home-profile .term-line:first-of-type { margin-top: 0; }
+.sk-home-profile .term-prompt-sym { color: var(--term-dim); }
+
+/* Identity block: name, handle, location, links */
+.profile-id { color: var(--term-fg); line-height: 1.85; }
+.profile-id .p-name { color: var(--term-fg-bright); font-weight: 600; }
+.profile-id .p-handle { color: var(--term-accent); }
+.profile-id .p-meta { color: var(--term-dim); }
+.profile-id .p-links a { color: var(--term-accent); }
+.profile-id .p-links a:hover { color: var(--term-accent-br); text-shadow: 0 0 8px var(--term-glow); }
+
+/* Banner photo carried over from the GitHub README (bleeds to the pane edges) */
+.profile-banner {
+   display: block;
+   width: calc(100% + 3.2rem);
+   margin: 0.1rem -1.6rem 1.4rem;
+   border-bottom: 1px solid var(--term-rule);
+   filter: brightness(0.9) contrast(1.03);
+}
+
+/* Identity bio line */
+.profile-id .p-bio { color: var(--term-fg); }
+
+/* Stack tags (the README's badge row, flattened to terminal text) */
+.term-tags {
+   list-style: none;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.4rem 0.6rem;
+   margin: 0.9rem 0 0;
+   padding: 0;
+}
+.term-tags li { color: var(--term-accent); font-size: 0.8rem; }
+.term-tags li::before { content: "["; color: var(--term-dim); }
+.term-tags li::after { content: "]"; color: var(--term-dim); }
+
+/* "What I'm building" prose + list */
+.profile-building p { color: var(--term-fg); margin: 0 0 0.85rem; max-width: 68ch; }
+.build-list { list-style: none; margin: 0.4rem 0 0; padding: 0; }
+.build-list li {
+   border-top: 1px solid var(--term-rule);
+   padding: 0.7rem 0;
+   color: var(--term-fg);
+   max-width: 70ch;
+}
+.build-list li:first-child { border-top: 0; }
+.build-list .b-key { color: var(--term-accent); }
+.build-list .b-key::before { content: "› "; color: var(--term-accent); }
+.build-list .b-key::after { content: ": "; color: var(--term-dim); }
+.build-list a { color: var(--term-accent); }
+.build-list a:hover { color: var(--term-accent-br); text-shadow: 0 0 8px var(--term-glow); }

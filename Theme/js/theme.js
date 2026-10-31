@@ -26,9 +26,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
    }
 
-   // Hero: inject the live prompt line with a blinking cursor
+   // Hero: inject the live prompt line with a blinking cursor.
+   // Skip it on the home page, where the GitHub-profile block below the hero
+   // ends the terminal session with its own cursor.
    var hero = document.querySelector('.sk-home-hero');
-   if (hero && !hero.querySelector('.sk-term-prompt')) {
+   var hasHomeProfile = document.querySelector('.sk-home-content');
+   if (hero && !hasHomeProfile && !hero.querySelector('.sk-term-prompt')) {
       var prompt = document.createElement('div');
       prompt.className = 'sk-term-prompt';
       prompt.innerHTML = 'adam@lea ~ % <span class="sk-cursor">▇</span>';
